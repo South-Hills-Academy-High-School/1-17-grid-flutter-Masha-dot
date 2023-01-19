@@ -22,26 +22,45 @@ class MyApp extends StatelessWidget{
   }
 }
 
-class MYAppState extends ChangeNotifier {}
+class MYAppState extends ChangeNotifier {
+  var opacityList = [1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,];
+}
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    var appState = context
     return Scaffold(
       body: GridView.builder(
+        itemCount: 9,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
       ),
       itemBuilder: (context,index) {
-        return Padding(
-          padding: const EdgeInsets.all(8)
-          child: Container(
-          height: 50,
-          width: 50,
-          color: Color.fromARGB(255, 238, 65, 175),
-          child: Image(image: Image.network(''))),
+        return Opacity(
+          opacity: 0.0,
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: SizedBox(
+              height: 50,
+              width: 50,
+              child: Material(
+              color: Color.fromARGB(255, 238, 65, 175),
+              child: InkWell(
+                child: Image.network(
+                  'https://i.giphy.com/media/xT0xezQGU5xCDJuCPe/200.gif'),
+                  onTap: () {},
+              ),
+              ),
+            ),
+          ),
         );
-      },
+       },
       ),
     );
   } 
